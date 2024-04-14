@@ -20,7 +20,10 @@ void runSimulatorInstance(int instanceNumber, int n_iter, int n_threads, int n_p
     }
 }
 
+const int no_of_threads = 4;
+
 int main(){
     std::vector<std::thread> threads;
-
+    for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, i, 0, 4, 3, 6, 2);
+    for(auto& t: threads) t.join();
 }
