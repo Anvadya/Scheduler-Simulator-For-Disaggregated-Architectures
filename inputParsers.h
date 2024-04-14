@@ -54,8 +54,8 @@ public:
     TextInputParser(std::string inputFile):nameOfInputFile(inputFile){parseInput();}
 
     ~TextInputParser(){
-        for(auto thr: thread_vector) if(thr) delete thr;
-        if(input) delete input;
+        for(auto &thr: thread_vector) if(thr) {delete thr; thr = nullptr;}
+        if(input) {delete input; input = nullptr;}
     }
 };
 
@@ -93,8 +93,8 @@ public:
         :n_threads(input_n_threads), total_pages(size_of_memory), pages_for_thread(input_n_threads, n_pages){parseInput();}
 
     ~RandomInputParser(){
-        for(auto c: thread_vector) if(c) delete c;
-        if(input) delete input;
+        for(auto& c: thread_vector) if(c) {delete c; c = nullptr;}
+        if(input) {delete input; input = nullptr;}
     }
 };
 
