@@ -32,7 +32,7 @@ const int n_tests = 96/no_of_threads;
 int main(){
     std::vector<std::thread> threads;
     for(int j = 0; j < n_tests; ++j){
-        for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, n_tests*j+i, 10, 4+2*j, 10, 25, 4);
+        for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, no_of_threads*j+i, 10, 4+2*j, 10, 25, 4);
     }
     for(auto& t: threads) t.join();
 }
