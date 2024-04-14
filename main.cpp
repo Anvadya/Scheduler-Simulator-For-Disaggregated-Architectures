@@ -10,7 +10,7 @@ void runSimulatorInstance(int instanceNumber, int n_iter, int n_threads, int n_p
     std::cout << "Started execution by thread no.:\t" << instanceNumber << std::endl;
     BruteForceOptimalScheduler bfs;
     GreedySchedulingAlgorithm gs(metric2);
-    std::string filename {"output"}; filename += std::to_string(instanceNumber); filename += ".txt";
+    std::string filename {"./outpus/output"}; filename += std::to_string(instanceNumber); filename += ".txt";
     for(int i = 0; i < n_iter; ++i){
         RandomInputParser rip(n_threads, n_pages, n_size_of_page_pool);
         const Input* r_input_ptr = rip.getInputPtr();
@@ -24,6 +24,6 @@ const int no_of_threads = 4;
 
 int main(){
     std::vector<std::thread> threads;
-    for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, i, 0, 4, 3, 6, 2);
+    for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, i, 1, 4, 3, 6, 2);
     for(auto& t: threads) t.join();
 }
