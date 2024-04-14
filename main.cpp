@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "simulator.h"
 #include "inputParsers.h"
+#include "simulator.h"
 #include "metrics.h"
 
 void runSimulatorInstance(int instanceNumber, int n_iter, int n_threads, int n_pages, int n_size_of_page_pool, int n_CN){
