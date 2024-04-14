@@ -4,7 +4,6 @@
 #include <cstddef>
 #include <vector>
 #include "thread.h"
-#include "inputParsers.h"
 
 class Input{
 private:
