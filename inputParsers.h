@@ -34,7 +34,7 @@ private:
         inputFile >> n_threads;
 
         for(int i = 0; i < n_threads; ++i){
-            std::multiset<int> tmpPages;
+            std::set<int> tmpPages;
             int n_pages;
             inputFile >> n_pages;
             for(int j = 0; j < n_pages; ++j){
@@ -69,8 +69,8 @@ private:
 
     static int getRandomNumber(int range_min, int range_max){
         static std::random_device rd;
-        int chaos = std::chrono::duration_cast<std::chrono::nanoseconds>((std::chrono::high_resolution_clock::now()).time_since_epoch()).count();
-        std::mt19937 gen(rd() + chaos); 
+        static int chaos = std::chrono::duration_cast<std::chrono::nanoseconds>((std::chrono::high_resolution_clock::now()).time_since_epoch()).count();
+        static std::mt19937 gen(rd() + chaos); 
         std::uniform_int_distribution<int> dis(range_min, range_max);
         int rand_num = dis(gen);
         return rand_num;
@@ -78,8 +78,8 @@ private:
 
     virtual bool parseInput(){
         for(int i = 0; i < n_threads; ++i){
-            std::multiset<int> pages_for_current_thread;
-            for(int j = 0; j < pages_for_thread[i]; ++j){
+            std::set<int> pages_for_current_thread;
+            while(int(pages_for_current_thread.size()) < pages_for_thread[i]){
                 pages_for_current_thread.insert(getRandomNumber(0, total_pages-1));
             }
             Thread* thread_ptr = new Thread(pages_for_current_thread);

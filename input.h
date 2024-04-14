@@ -19,6 +19,10 @@ public:
     }
     
     std::size_t numberOfThreads() const {return threads.size();}
+    const std::set<int>* pages_in_PageSet(int i) const{
+        if(i<0 || i>=numberOfThreads()) return nullptr;
+        return &(threads[i]->pages.pages);
+    }
 };
 
 #endif

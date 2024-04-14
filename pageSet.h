@@ -6,13 +6,14 @@
 class PageSet{
 private:
 public:
-    const std::multiset<int> pages;
+    const std::set<int> pages;
 
-    PageSet(std::multiset<int> input):pages(std::move(input)){}
+    PageSet(std::set<int> input):pages(std::move(input)){}
     PageSet(const PageSet& input) = default;
     PageSet(PageSet&& input) = default;
 
     std::size_t size() const{return pages.size();}
 };
+
 
 #endif
