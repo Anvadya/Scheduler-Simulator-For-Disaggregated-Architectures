@@ -22,6 +22,6 @@ int main(){
 
     auto placemenet_strategy = gs.runAlgorithm(t_input_ptr, 1);
     // placemenet_strategy.displayPlacementOfThreads();
-    placemenet_strategy.writeOutputToFile(0,0, "test_output.txt");
+    placemenet_strategy.writeOutputToFile(0,0, "test_output_1.txt");
     return 0;
 }
