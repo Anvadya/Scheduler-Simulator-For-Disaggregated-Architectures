@@ -9,7 +9,7 @@
 
 //The thread for running an instance
 void runSimulatorInstance(int instanceNumber, int n_iter, int n_threads, int n_pages, int n_size_of_page_pool, int n_CN){
-    std::cout << "Started execution by thread no.:\t" << instanceNumber << std::endl;
+    // std::cout << "Started execution by thread no.:\t" << instanceNumber << std::endl;
     BruteForceOptimalScheduler bfs;
     GreedySchedulingAlgorithm gs(metric2);
     std::string filename {"./outputs/output"}; filename += std::to_string(instanceNumber); filename += ".txt";
@@ -24,7 +24,6 @@ void runSimulatorInstance(int instanceNumber, int n_iter, int n_threads, int n_p
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> elapsed = end - start;
     std::cout << "Elapsed time by thread:\t" << instanceNumber << "is :\t" << elapsed.count() << " ms" << std::endl;
-
 }
 
 const int no_of_threads = 8;
@@ -33,7 +32,7 @@ const int n_tests = 96/no_of_threads;
 int main(){
     std::vector<std::thread> threads;
     for(int j = 0; j < n_tests; ++j){
-        for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, i, 10, 4+2*j, 10, 25, 4);
+        for(int i = 0; i < no_of_threads; ++i) threads.emplace_back(runSimulatorInstance, n_tests*j+i, 10, 4+2*j, 10, 25, 4);
     }
     for(auto& t: threads) t.join();
 }
